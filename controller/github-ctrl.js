@@ -12,9 +12,11 @@ router.get('/positions', (req, res) => {
     let location = req.query.location != undefined ? req.query.location : '';
     let long = req.query.long != undefined ? req.query.long : '';
     let lat = req.query.lat != undefined ? req.query.lat : '';
-    let full_time = req.params.full_time;
+    let full_time = req.query.full_time != undefined ? req.params.full_time:'';
+    let search = req.query.search != undefined ? req.params.search:'';
+
     let markdown = req.query.markdown != undefined ? req.query.markdown : '';
-    request(`${apiUri}?description=${description}&page=${page}&location=${location}&long=${long}&lat=${lat}&full_time=${full_time}&markdown=${markdown}`, { json: true }, (err, response, body) => {
+    request(`${apiUri}?description=${description}&page=${page}&location=${location}&long=${long}&lat=${lat}&full_time=${full_time}&markdown=${markdown}&search=${search}`, { json: true }, (err, response, body) => {
         if (err) {
             res.json({ err });
         }
